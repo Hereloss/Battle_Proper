@@ -21,3 +21,5 @@ gem "sinatra-reloader", "~> 1.0"
 gem "webrick", "~> 1.7"
 
 gem "rack", "~> 2.2"
+
+gem "capybara", "~> 3.36"
