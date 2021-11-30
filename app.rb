@@ -6,15 +6,23 @@ class Battle < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  enable :sessions
+
   # our routes would go here
   get '/' do
     erb(:index)
   end
 
   post '/names' do
-    @name1 = params[:name1]
-    @name2 = params[:name2]
-    erb(:names)
+    session[:name1] = params[:name1]
+    session[:name2] = params[:name2]
+    redirect '/play'
+  end
+
+  get '/play' do
+    @name1 = session[:name1]
+    @name2 = session[:name2]
+    erb(:play)
   end
 
   # # Start the server if this file is executed directly (do not change the line below)
