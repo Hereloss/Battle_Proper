@@ -6,6 +6,8 @@ class Battle < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  attr_reader :player_1_hitpoints
+
   enable :sessions
 
   # our routes would go here
@@ -20,6 +22,10 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
+    session[:player_2_hitpoints] = 100
+    session[:player_1_hitpoints] = 100
+    @player_2_hitpoints = session[:player_2_hitpoints]
+    @player_1_hitpoints = session[:player_1_hitpoints]
     @name1 = session[:name1]
     @name2 = session[:name2]
     erb(:play)

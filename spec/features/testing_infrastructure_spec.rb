@@ -1,3 +1,5 @@
+require_relative '../../app.rb'
+
 feature 'Testing infrastructure' do
   scenario 'Can run app and check page content' do
     visit('/')
@@ -13,5 +15,10 @@ feature 'Testing infrastructure' do
     click_on 'Submit'
 
     expect(page).to have_content 'Chris' && 'Jess'
+  end
+
+  scenario 'Player 1 can see player 2s hitpoints' do
+    visit('/play')
+    expect(page).to have_content("100")
   end
 end
