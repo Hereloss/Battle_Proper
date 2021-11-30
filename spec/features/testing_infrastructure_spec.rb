@@ -6,13 +6,7 @@ feature 'Testing infrastructure' do
     expect(page).to have_content 'Testing infrastructure working!'
   end
   scenario 'players can fill in their names (in a form), submit that form, and see those names on-screen' do
-    visit('/')
-    name1 = 'Chris'
-    name2 = 'Jess'
-
-    fill_in 'name1', with: name1
-    fill_in 'name2', with: name2
-    click_on 'Submit'
+    sign_in_and_play
 
     expect(page).to have_content 'Chris' && 'Jess'
   end
@@ -20,5 +14,10 @@ feature 'Testing infrastructure' do
   scenario 'Player 1 can see player 2s hitpoints' do
     visit('/play')
     expect(page).to have_content("100")
+  end
+
+  scenario 'Will show name next to health' do
+  sign_in_and_play
+  expect(page).to have_content("Chris Hitpoints: 100")
   end
 end
